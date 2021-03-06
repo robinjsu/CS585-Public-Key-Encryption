@@ -16,6 +16,16 @@ def read_file(file):
             block = f.read(c.BLOCK_SIZE_BYTES)
     return plainText 
 
+def read_cipher_text(filename):
+    blocks = []
+    with open(filename) as f:
+        block = f.readline()
+        while block != '':
+            ctexts = block[:-1].split(' ')
+            blocks.append(ctexts)
+            block = f.readline()
+    return blocks
+
 def get_blocks(filebytes):
     index = 0
     end = len(filebytes)
@@ -37,26 +47,16 @@ def check_key_file(filename):
             return None
         return contents.split(' ')
 
-def write_ciphertxt_to_file(cipher_tuples):
-    with open(c.CIPHER_TEXT_FILE, 'w') as f:
+def write_ciphertxt_to_file(cipher_tuples, filename):
+    with open(filename, 'w') as f:
         for ctuple in cipher_tuples:
             f.write(f"{ctuple[0]} {ctuple[1]}\n")
         f.close()
 
-def write_plaintxt_to_file(plaintext):
-    with open(c.PLAIN_TEXT_FILE, 'w') as f:
+def write_plaintxt_to_file(plaintext, filename):
+    with open(filename, 'w') as f:
         f.write(plaintext)
         f.close()
-
-def read_cipher_text(filename):
-    blocks = []
-    with open(filename) as f:
-        block = f.readline()
-        while block != '':
-            ctexts = block[:-1].split(' ')
-            blocks.append(ctexts)
-            block = f.readline()
-    return blocks
 
 def int_to_ascii(blocks):
     hex_string = ""
@@ -65,7 +65,6 @@ def int_to_ascii(blocks):
         hex_encoding.append(hex(b))
     for h in hex_encoding:
         hex_string += h[2::]
-    
     plainBytes = bytes.fromhex(hex_string)
     plain_ascii = plainBytes.decode()
     return plain_ascii

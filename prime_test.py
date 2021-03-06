@@ -1,6 +1,8 @@
 import os
 import secrets
 import random
+import constant as c
+
 # p - 1 = 2^u * r
 def decompose(p):
     power = 0
@@ -12,7 +14,8 @@ def decompose(p):
             return power, dividend
         power += 1
 
-# based on algorithm written in pseudocode in Paar textbook, pg. 191 and Wikipedia:https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
+# based on the Miller-Rabin algorithm written in pseudocode in Paar textbook, pg. 191 
+# and Wikipedia:https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
 def mr_prime(p, s):
     if p % 2 == 0:
         return False
@@ -27,16 +30,9 @@ def mr_prime(p, s):
             if z == (p-1):
                 break
         else:
-            # print(f"{p} likely composite")
             return False
-    # print(f"{p} likely prime")
     return True
 
 def miller_rabin(p):
-    return mr_prime(p, 30)
-
-# def main():
-#     print(miller_rabin(53))
-
-# if __name__ == "__main__":
-#     main()     
+    return mr_prime(p, c.MR_ROUNDS)
+     
