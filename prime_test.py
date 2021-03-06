@@ -27,16 +27,16 @@ def mr_prime(p, s):
             if z == (p-1):
                 break
         else:
-            print(f"{p} likely composite")
+            # print(f"{p} likely composite")
             return False
-    print(f"{p} likely prime")
+    # print(f"{p} likely prime")
     return True
 
 def miller_rabin(p):
     return mr_prime(p, 30)
 
-def main():
-    print(miller_rabin(53))
+# def main():
+#     print(miller_rabin(53))
 
-if __name__ == "__main__":
-    main()     
+# if __name__ == "__main__":
+#     main()     

@@ -7,7 +7,6 @@ def make_x_bits(num, x):
         return num + pow(2,(x-1))
     return num
 
-
 def read_file(file):
     plainText = b''
     with open(file, 'rb') as f:
@@ -15,7 +14,6 @@ def read_file(file):
         while block != b'':
             plainText += block
             block = f.read(c.BLOCK_SIZE_BYTES)
-    print(plainText)
     return plainText 
 
 def get_blocks(filebytes):
@@ -30,8 +28,46 @@ def get_blocks(filebytes):
             blk = filebytes[index:index+c.BLOCK_SIZE_BYTES]
             blocks.append(int(blk.hex(), 16))
         index += c.BLOCK_SIZE_BYTES      
-    print(f"message blocks: {blocks}")
     return blocks
 
-# if __name__ == "__main__":
-#     get_blocks(b'Hello there!')
+def check_key_file(filename):
+    with open(filename) as f:
+        contents = f.readline()
+        if contents == '':
+            return None
+        return contents.split(' ')
+
+def write_ciphertxt_to_file(cipher_tuples):
+    with open(c.CIPHER_TEXT_FILE, 'w') as f:
+        for ctuple in cipher_tuples:
+            f.write(f"{ctuple[0]} {ctuple[1]}\n")
+        f.close()
+
+def write_plaintxt_to_file(plaintext):
+    with open(c.PLAIN_TEXT_FILE, 'w') as f:
+        f.write(plaintext)
+        f.close()
+
+def read_cipher_text(filename):
+    blocks = []
+    with open(filename) as f:
+        block = f.readline()
+        while block != '':
+            ctexts = block[:-1].split(' ')
+            blocks.append(ctexts)
+            block = f.readline()
+    return blocks
+
+def int_to_ascii(blocks):
+    hex_string = ""
+    hex_encoding = []
+    for b in blocks:
+        hex_encoding.append(hex(b))
+    for h in hex_encoding:
+        hex_string += h[2::]
+    
+    plainBytes = bytes.fromhex(hex_string)
+    plain_ascii = plainBytes.decode()
+    return plain_ascii
+
+

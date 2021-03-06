@@ -6,7 +6,7 @@ import secrets
 def find_q_val(q):
     # print(f"checking q ({q})...")
     while True:
-        print(f"checking q ({q})...")
+        # print(f"checking q ({q})...")
         if prime.miller_rabin(q) == True and (q % 12 == 5):
             return q
         q = utils.make_x_bits(secrets.randbits(c.Q_SIZE_BITS), c.Q_SIZE_BITS)
