@@ -15,6 +15,15 @@ respectively.
 
 **For decryption mode**: input is the ciphertext file, 'ctext.txt', where each pair of ciphertext, (C1,C2), is written to a separate line; output of plaintext is written to stdout, as well as a file named 'ptext-out.txt'.
 
+## List of Files
+public_key.py: main file to execute the public key crypto system
+constant.py: file containing constant values used throughout the program
+utils.py: utility functions primarily for file input/output
+encryption.py: implementation of encryption and decryption algorithms
+keygen.py: implementation of public and private key generation
+prime_test.py: implementation of the Miller-Rabin primality test
+ptext.txt: plaintext to be encrypted
+
 ## Running the Program
 
 Key Generation:
