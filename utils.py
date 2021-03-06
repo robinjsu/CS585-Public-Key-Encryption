@@ -68,5 +68,3 @@ def int_to_ascii(blocks):
     plainBytes = bytes.fromhex(hex_string)
     plain_ascii = plainBytes.decode()
     return plain_ascii
-
-
