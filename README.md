@@ -13,7 +13,7 @@ respectively.
 
 **For encryption mode**: input is a plaintext file ('ptext.txt'), encoded as ASCII/Unicode (UTF-8), and the public key file ('pubkey.txt'); output of encrypted message blocks are written to a file named 'ctext.txt'.
 
-**For decryption mode**: input is the ciphertext file, 'ctext.txt', where each pair of ciphertext, (C1,C2), is written to a separate line; output of plaintext is written to a file named 'ptext-out.txt'.
+**For decryption mode**: input is the ciphertext file, 'ctext.txt', where each pair of ciphertext, (C1,C2), is written to a separate line; output of plaintext is written to stdout, as well as a file named 'ptext-out.txt'.
 
 ## Running the Program
 
