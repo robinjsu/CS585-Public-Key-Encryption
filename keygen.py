@@ -1,21 +1,23 @@
+import utils
 import constant as c
 import prime_test as prime
 import secrets
 
 def find_q_val(q):
-    print(f"checking q ({q})...")
+    # print(f"checking q ({q})...")
     while True:
+        print(f"checking q ({q})...")
         if prime.miller_rabin(q) == True and (q % 12 == 5):
             return q
-        q = secrets.randbits(c.Q_SIZE_BITS)
+        q = utils.make_x_bits(secrets.randbits(c.Q_SIZE_BITS), c.Q_SIZE_BITS)
 
-        
+
 def keygen():
     q, p, d, e2 = 0, 0, 0, 0
     e1 = 2
     # print("generating p...")
     while True:
-        q = secrets.randbits(c.Q_SIZE_BITS)
+        q = utils.make_x_bits(secrets.randbits(c.Q_SIZE_BITS), c.Q_SIZE_BITS)
         # find a k-1 bit prime
         q = find_q_val(q)  
         p = (2 * q) + 1

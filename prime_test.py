@@ -27,7 +27,9 @@ def mr_prime(p, s):
             if z == (p-1):
                 break
         else:
+            print(f"{p} likely composite")
             return False
+    print(f"{p} likely prime")
     return True
 
 def miller_rabin(p):
